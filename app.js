@@ -9,7 +9,7 @@ app.get("/", function(res, req){
     let tomorrow;
     function trashRequest(){
     return new Promise(resolve => {
-        request('https://www.pgh.st/locate/1036/Murray%20Hill%20Ave/', function (error, response, body) {
+        request('https://www.pgh.st/locate/ Secret', function (error, response, body) {
         let info = JSON.parse(body);
         recyclingDay = info[0].next_recycling_date;
         trashDay = info[0].next_pickup_date;
@@ -33,12 +33,12 @@ app.get("/", function(res, req){
     function groupMePost(){
         if (tomorrow == trashDay && tomorrow == recyclingDay){
             axios.post("https://api.groupme.com/v3/bots/post", {
-            "bot_id"  : "841d972456842608d4b31af7cb",
+            "bot_id"  : secret,
             "text"    : "Tomorrow is trash and recycling day"
             });
         }else if (tomorrow == "11-5-2018"){
             axios.post("https://api.groupme.com/v3/bots/post", {
-            "bot_id"  : "841d972456842608d4b31af7cb",
+            "bot_id"  : secret,
             "text"    : "Tomorrow is trash day"
             });
         }
