@@ -4,12 +4,13 @@ const express = require('express');
 const app = express();
 
 app.get("/", function(res, req){
+    res.send("beep boop");
     let recyclingDay;
     let trashDay; 
     let tomorrow;
     function trashRequest(){
     return new Promise(resolve => {
-        request('https://www.pgh.st/locate/ Secret', function (error, response, body) {
+        request('https://www.pgh.st/locate/1036/Murray%20Hill%20Ave/', function (error, response, body) {
         let info = JSON.parse(body);
         recyclingDay = info[0].next_recycling_date;
         trashDay = info[0].next_pickup_date;
@@ -33,12 +34,12 @@ app.get("/", function(res, req){
     function groupMePost(){
         if (tomorrow == trashDay && tomorrow == recyclingDay){
             axios.post("https://api.groupme.com/v3/bots/post", {
-            "bot_id"  : secret,
+            "bot_id"  : "841d972456842608d4b31af7cb",
             "text"    : "Tomorrow is trash and recycling day"
             });
         }else if (tomorrow == "11-5-2018"){
             axios.post("https://api.groupme.com/v3/bots/post", {
-            "bot_id"  : secret,
+            "bot_id"  : "841d972456842608d4b31af7cb",
             "text"    : "Tomorrow is trash day"
             });
         }
@@ -59,7 +60,9 @@ app.get("/", function(res, req){
 
 
 });
-app.listen(3000, function(){
+let port = process.env.PORT || 5000
+
+app.listen(port, function(){
     console.log('server running');
 });
 
