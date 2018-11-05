@@ -58,7 +58,7 @@ app.get("/", function(req, res){
     }
     finalPost();
 
-    res.send("beep boop");
+   
 });
 let port = process.env.PORT || 5000
 
