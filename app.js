@@ -3,7 +3,7 @@ const request = require('request');
 const express = require('express');
 const app = express();
 
-app.get("/", function(res, req){
+app.get("/", function(req, res){
     res.send("beep boop");
     let recyclingDay;
     let trashDay; 
