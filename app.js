@@ -53,7 +53,7 @@ async function finalPost(){
     await tomorrowsDate();
     alert();
 }
-cron.schedule('* 17 * * Monday,Tuesday,Wednesday', () => {
+cron.schedule('1 17 * * Monday,Tuesday,Wednesday', () => {
     finalPost();
   });
 
